@@ -50,7 +50,7 @@ def draw(canvas):
 			for char in word:
 				if guess == char:
 					guess_in_word = True
-					word_display = word_display[:index * 2] + char + word_display[index * 2 - 1:]
+					word_display = word_display[:index * 2] + char + word_display[index * 2 + 1:]
 					# print(word_display)
 				index += 1
 			letter_index = remaining_letters.find(guess)
