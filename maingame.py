@@ -19,13 +19,16 @@ BLACK = (0 ,0, 0)
 word_file = "dictionary.txt"
 WORDS = open(word_file).read().splitlines()
 word = random.choice(WORDS).upper()[1:-1]
+
+window = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
+pygame.display.set_caption('Hangman')
+
+# GLOBAL VARIABLES #
+# GAME #
 word_display = ""
 for char in word:
 	word_display += "_ "
 guess = ""
-
-window = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
-pygame.display.set_caption('Hangman')
 
 def draw(canvas):
 	global guess, word, word_display
