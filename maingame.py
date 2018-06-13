@@ -36,6 +36,7 @@ def draw(canvas):
 
 	# create game canvas #
 	canvas.fill(WHITE)
+	pygame.draw.line(canvas, BLACK, [0, HEIGHT // 2 + HEIGHT // 4], [WIDTH, HEIGHT // 2 + HEIGHT // 4], 1)
 
 	if guess != "":
 		print(word)
@@ -50,6 +51,18 @@ def draw(canvas):
 		remaining_letters = remaining_letters[:letter_index:] + remaining_letters[letter_index + 1::]
 		print(remaining_letters)
 		guess = ""
+
+	# create labels for gameplay #
+
+	# word display label #
+	myfont2 = pygame.font.SysFont(None, 20)
+	label2 = myfont2.render(word_display, 1, BLACK)
+	canvas.blit(label2, (WIDTH // 2 - WIDTH // 8, HEIGHT // 2 + HEIGHT // 8))
+
+	# remaining letters label #
+	myfont1 = pygame.font.SysFont(None, 20)
+	alphabet = myfont1.render("Letters: " + remaining_letters, 1, BLACK)
+	canvas.blit(alphabet, (30, HEIGHT // 2 + HEIGHT // 4 + HEIGHT // 8))
 
 def keydown(event):
 	global guess, won
