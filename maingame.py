@@ -30,26 +30,31 @@ for char in word:
 	word_display += "_ "
 guess = ""
 remaining_letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+notice = "Guess a letter"
 
 def draw(canvas):
-	global word, word_display, guess, remaining_letters
+	global word, word_display, guess, remaining_letters, notice
 
 	# create game canvas #
 	canvas.fill(WHITE)
 	pygame.draw.line(canvas, BLACK, [0, HEIGHT // 2 + HEIGHT // 4], [WIDTH, HEIGHT // 2 + HEIGHT // 4], 1)
 
 	if guess != "":
+		notice = ""
 		print(word)
 		print(guess)
-		index = 0
-		for char in word:
-			if guess == char:
-				word_display = word_display[:index * 2] + char + word_display[index * 2 - 1:]
-				print(word_display)
-			index += 1
-		letter_index = remaining_letters.find(guess)
-		remaining_letters = remaining_letters[:letter_index:] + remaining_letters[letter_index + 1::]
-		print(remaining_letters)
+		if guess in remaining_letters:
+			index = 0
+			for char in word:
+				if guess == char:
+					word_display = word_display[:index * 2] + char + word_display[index * 2 - 1:]
+					# print(word_display)
+				index += 1
+			letter_index = remaining_letters.find(guess)
+			remaining_letters = remaining_letters[:letter_index:] + remaining_letters[letter_index + 1::]
+			# print(remaining_letters)
+		else:
+			notice = "You already guessed that letter! Try one of the remaining letters in the alphabet!"
 		guess = ""
 
 	# create labels for gameplay #
@@ -58,6 +63,11 @@ def draw(canvas):
 	myfont2 = pygame.font.SysFont(None, 20)
 	label2 = myfont2.render(word_display, 1, BLACK)
 	canvas.blit(label2, (WIDTH // 2 - WIDTH // 8, HEIGHT // 2 + HEIGHT // 8))
+
+	# notice label #
+	myfont1 = pygame.font.SysFont(None, 20)
+	notice1 = myfont1.render(notice, 1, BLACK)
+	canvas.blit(notice1, (30, HEIGHT // 2 + HEIGHT // 4 + HEIGHT // 16))
 
 	# remaining letters label #
 	myfont1 = pygame.font.SysFont(None, 20)
