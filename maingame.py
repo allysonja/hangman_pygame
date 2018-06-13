@@ -28,7 +28,7 @@ window = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
 pygame.display.set_caption('Hangman')
 
 def draw(canvas):
-	global word, word_display
+	global guess, word, word_display
 
 	# create game canvas #
 	canvas.fill(WHITE)
@@ -36,6 +36,7 @@ def draw(canvas):
 	if guess != "":
 		print(word)
 		print(guess)
+		guess = ""
 
 def keydown(event):
 	global guess, won
