@@ -77,6 +77,24 @@ def draw(canvas):
 	pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6], [WIDTH // 2 + WIDTH // 8, HEIGHT // 6], 1)
 			# small pole #
 	pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12], [WIDTH // 2, HEIGHT // 6], 1)
+		# draw head #
+	if wrong_guesses_count >= 1:
+		pygame.draw.circle(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 10], 10, 1)
+		# draw body #
+	if wrong_guesses_count >= 2:
+		pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 20], [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 70], 1)
+		# draw right arm #
+	if wrong_guesses_count >= 3:
+		pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 25], [WIDTH // 2 - WIDTH // 32, HEIGHT // 6 + HEIGHT // 12 + 35], 1)
+		# draw left arm #
+	if wrong_guesses_count >= 4:
+		pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 25], [WIDTH // 2 + WIDTH // 32, HEIGHT // 6 + HEIGHT // 12 + 35], 1)
+		# draw right leg #	
+	if wrong_guesses_count >= 5:
+		pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 70], [WIDTH // 2 - WIDTH // 32, HEIGHT // 6 + HEIGHT // 12 + 85], 1)
+		# draw left leg #
+	if wrong_guesses_count >= 6:
+		pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 70], [WIDTH // 2 + WIDTH // 32, HEIGHT // 6 + HEIGHT // 12 + 85], 1)
 
 	# create labels for gameplay #
 
