@@ -31,9 +31,11 @@ for char in word:
 guess = ""
 remaining_letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
 notice = "Guess a letter"
+guess_in_word = False
+wrong_guesses_count = 0
 
 def draw(canvas):
-	global word, word_display, guess, remaining_letters, notice
+	global word, word_display, guess, remaining_letters, notice, guess_in_word, wrong_guesses_count
 
 	# create game canvas #
 	canvas.fill(WHITE)
@@ -42,17 +44,25 @@ def draw(canvas):
 	if guess != "":
 		notice = ""
 		print(word)
-		print(guess)
+		# print(guess)
 		if guess in remaining_letters:
 			index = 0
 			for char in word:
 				if guess == char:
+					guess_in_word = True
 					word_display = word_display[:index * 2] + char + word_display[index * 2 - 1:]
 					# print(word_display)
 				index += 1
 			letter_index = remaining_letters.find(guess)
 			remaining_letters = remaining_letters[:letter_index:] + remaining_letters[letter_index + 1::]
 			# print(remaining_letters)
+			if guess_in_word != True:
+				notice = "That letter isn't in the word! Guess a different letter!"
+				wrong_guesses_count += 1
+				print(wrong_guesses_count)
+			else:
+				notice = "Guess another letter!"
+				guess_in_word = False
 		else:
 			notice = "You already guessed that letter! Try one of the remaining letters in the alphabet!"
 		guess = ""
