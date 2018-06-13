@@ -29,9 +29,10 @@ word_display = ""
 for char in word:
 	word_display += "_ "
 guess = ""
+remaining_letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
 
 def draw(canvas):
-	global guess, word, word_display
+	global word, word_display, guess, remaining_letters
 
 	# create game canvas #
 	canvas.fill(WHITE)
@@ -39,6 +40,15 @@ def draw(canvas):
 	if guess != "":
 		print(word)
 		print(guess)
+		index = 0
+		for char in word:
+			if guess == char:
+				word_display = word_display[:index * 2] + char + word_display[index * 2 - 1:]
+				print(word_display)
+			index += 1
+		letter_index = remaining_letters.find(guess)
+		remaining_letters = remaining_letters[:letter_index:] + remaining_letters[letter_index + 1::]
+		print(remaining_letters)
 		guess = ""
 
 def keydown(event):
