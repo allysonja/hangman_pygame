@@ -33,9 +33,10 @@ remaining_letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
 notice = "Guess a letter"
 guess_in_word = False
 wrong_guesses_count = 0
+won = False
 
 def draw(canvas):
-	global word, word_display, guess, remaining_letters, notice, guess_in_word, wrong_guesses_count
+	global word, word_display, guess, remaining_letters, notice, guess_in_word, wrong_guesses_count, won
 
 	# create game canvas #
 	canvas.fill(WHITE)
@@ -96,7 +97,39 @@ def draw(canvas):
 	if wrong_guesses_count >= 6:
 		pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12 + 70], [WIDTH // 2 + WIDTH // 32, HEIGHT // 6 + HEIGHT // 12 + 85], 1)
 
+
 	# create labels for gameplay #
+	
+	# you win display label #
+	# if no more _ in word display, the player must have guessed all the letters in the word #
+	if "_" not in word_display:
+		won = True
+		canvas.fill(BLACK)
+		canvas.fill(BLACK)
+		myfont2 = pygame.font.SysFont(None, 60)
+		winning_label = myfont2.render("YOU WON!", 1, WHITE)
+		canvas.blit(winning_label, (WIDTH // 4 + WIDTH // 16, HEIGHT // 2))
+		myfont2 = pygame.font.SysFont(None, 30)
+		word_label = myfont2.render("Your word was " + word, 1, WHITE)
+		canvas.blit(word_label, (WIDTH // 4 + WIDTH // 16, HEIGHT // 2 + HEIGHT // 8 + HEIGHT // 16))
+		myfont2 = pygame.font.SysFont(None, 30)
+		explain = myfont2.render("press any button to exit", 1, WHITE)
+		canvas.blit(explain, (WIDTH // 4 + WIDTH // 16, HEIGHT // 2 + HEIGHT // 4))
+
+	# you lost display label #
+	# if the player guessed wrongly six times then the whole man is hung and they lost #
+	if wrong_guesses_count == 6:
+		won = True
+		canvas.fill(BLACK)
+		myfont2 = pygame.font.SysFont(None, 60)
+		winning_label = myfont2.render("YOU LOST", 1, WHITE)
+		canvas.blit(winning_label, (WIDTH // 4 + WIDTH // 16, HEIGHT // 2))
+		myfont2 = pygame.font.SysFont(None, 30)
+		word_label = myfont2.render("Your word was " + word, 1, WHITE)
+		canvas.blit(word_label, (WIDTH // 4 + WIDTH // 16, HEIGHT // 2 + HEIGHT // 8 + HEIGHT // 16))
+		myfont2 = pygame.font.SysFont(None, 30)
+		explain = myfont2.render("press any button to exit", 1, WHITE)
+		canvas.blit(explain, (WIDTH // 4 + WIDTH // 16, HEIGHT // 2 + HEIGHT // 4))
 
 	# word display label #
 	myfont2 = pygame.font.SysFont(None, 20)
@@ -118,6 +151,10 @@ def keydown(event):
 
 	if event.unicode.isalpha():
 		guess = event.unicode.upper()
+
+	if won == True:
+		pygame.quit()
+		sys.exit()
 
 init()
 
