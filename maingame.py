@@ -67,6 +67,17 @@ def draw(canvas):
 			notice = "You already guessed that letter! Try one of the remaining letters in the alphabet!"
 		guess = ""
 
+	# draw hangman #
+		# draw hangman tower #
+			# baseline #
+	pygame.draw.line(canvas, BLACK, [WIDTH // 2 + WIDTH // 16, HEIGHT // 2], [WIDTH // 2 + WIDTH // 4 - WIDTH // 16, HEIGHT // 2], 1)
+			# tall pole #
+	pygame.draw.line(canvas, BLACK, [WIDTH // 2 + WIDTH // 8, HEIGHT // 2], [WIDTH // 2 + WIDTH // 8, HEIGHT // 6], 1)
+			# horizontal line #
+	pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6], [WIDTH // 2 + WIDTH // 8, HEIGHT // 6], 1)
+			# small pole #
+	pygame.draw.line(canvas, BLACK, [WIDTH // 2, HEIGHT // 6 + HEIGHT // 12], [WIDTH // 2, HEIGHT // 6], 1)
+
 	# create labels for gameplay #
 
 	# word display label #
