@@ -44,23 +44,18 @@ def draw(canvas):
 
 	if guess != "":
 		notice = ""
-		print(word)
-		# print(guess)
 		if guess in remaining_letters:
 			index = 0
 			for char in word:
 				if guess == char:
 					guess_in_word = True
 					word_display = word_display[:index * 2] + char + word_display[index * 2 + 1:]
-					# print(word_display)
 				index += 1
 			letter_index = remaining_letters.find(guess)
 			remaining_letters = remaining_letters[:letter_index:] + remaining_letters[letter_index + 1::]
-			# print(remaining_letters)
 			if guess_in_word != True:
 				notice = "That letter isn't in the word! Guess a different letter!"
 				wrong_guesses_count += 1
-				print(wrong_guesses_count)
 			else:
 				notice = "Guess another letter!"
 				guess_in_word = False
